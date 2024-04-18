@@ -1,0 +1,5 @@
+
+#Google Map console - https://console.cloud.google.com
+#Click Api&Services, ten Map Categories
+apikey - AIzaSyBUzX8s0kDfHsDoIMcKSFOPC5lcZ1ZPO08
+

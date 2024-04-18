@@ -1,7 +1,9 @@
 import { StyleSheet, FlatList, View } from "react-native";
 import React from "react";
-import { SIZES } from "../../constants/theme"
+import { SIZES } from "../../constants/theme";
 import ReusableShimmer from "./ReusableShimmer";
+
+//we are using shimmer for loading. We use it to replay activity indicator component.
 
 const HorizontalShimmer = ({
   horizontal,
@@ -14,6 +16,7 @@ const HorizontalShimmer = ({
   paddingRight,
 }) => {
   const shimerList = [1, 2, 3, 4, 5];
+
   return (
     <FlatList
       data={shimerList}
@@ -46,3 +49,5 @@ const styles = StyleSheet.create({
     paddingRight: paddingRight,
   }),
 });
+
+
