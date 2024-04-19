@@ -3,3 +3,4 @@
 #Click Api&Services, ten Map Categories
 apikey - AIzaSyBUzX8s0kDfHsDoIMcKSFOPC5lcZ1ZPO08
 
+#emojipedia.ord - emojipedia

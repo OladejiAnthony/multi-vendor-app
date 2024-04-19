@@ -9,11 +9,14 @@ import * as Location from "expo-location";
 import BottomTab from "./app/navigation/BottomTab";
 import { UserLocationContext } from "./app/context/UserLocationContext";
 import { UserReversedGeoCode } from "./app/context/UserReversedGeoCode";
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [location, setLocation] = useState(null);
-  const [address, setAddress] = useState(null);
+  const [location, setLocation] = useState(null); //console.log(location)
+  const [address, setAddress] = useState(null); //console.log(address)
+  const [errorMsg, setErrorMsg] = useState("")
 
   const defaultAddresss = {
     city: "Shanghai",
@@ -45,8 +48,21 @@ export default function App() {
   }, [fontsLoaded]);
 
   useEffect(() => {
-    setAddress(defaultAddresss)
+    (async () => {
+      setAddress(defaultAddresss)
+      //get permission
+      let status = await Location.requestForegroundPermissionAsync();
+      if(status === "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+      //get userLocation
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location)
+     }
+    )
   }, []);
+
 
   if (!fontsLoaded) {
     // Return a loading indicator or splash screen while fonts are loading or app is initializing
@@ -55,7 +71,7 @@ export default function App() {
 
   return (
     <UserLocationContext.Provider value={{ location, setLocation }}>
-      <UserReversedGeoCode value={{ address, setAddress }}>
+      <UserReversedGeoCode.Provider value={{ address, setAddress }}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
@@ -65,7 +81,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </UserReversedGeoCode>
+      </UserReversedGeoCode.Provider>
     </UserLocationContext.Provider>
   );
 }
