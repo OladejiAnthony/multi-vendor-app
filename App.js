@@ -47,20 +47,23 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
+  //get current location
   useEffect(() => {
     (async () => {
       setAddress(defaultAddresss)
-      //get permission
-      let status = await Location.requestForegroundPermissionAsync();
+      //get permission from user
+      let status = await Location.requestForegroundPermissionsAsync();
       if(status === "granted") {
         setErrorMsg("Permission to access location was denied");
         return;
-      }
+      } //console.log(status)
       //get userLocation
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location)
+      setLocation(location);
+      //console.log(location)
      }
     )
+    ();
   }, []);
 
 
@@ -85,3 +88,17 @@ export default function App() {
     </UserLocationContext.Provider>
   );
 }
+
+{/* 
+  console.log(location)
+  {
+    "coords": 
+      {"accuracy": 100, "altitude": 326.79998779296875, "altitudeAccuracy": 100, "heading": 0, "latitude": 8.4816482, "longitude": 4.5378835, "speed": 0
+      }, 
+    "mocked": false, 
+    "timestamp": 1713569081398
+  }
+
+*/}
+
+

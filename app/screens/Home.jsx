@@ -6,18 +6,22 @@ import pages from "./page.style";
 import uidata from "../constants/uidata";
 import { UserReversedGeoCode } from "../context/UserReversedGeoCode";
 import { UserLocationContext } from "../context/UserLocationContext";
+import HomeHeader from "../components/HomeHeader";
 
 const Home = () => {
   //destructure context data
-  const {address, setAddress} = useContext(UserReversedGeoCode);
+  //const {address, setAddress} = useContext(UserReversedGeoCode);
   //console.log(address)
-  const {location, setLocation} = useContext(UserLocationContext);
-  console.log(location)
+  //const {location, setLocation} = useContext(UserLocationContext);
+  //console.log(location)
+
 
   return (
     <SafeAreaView>
       <View style={pages.viewOne}>
-        <View style={pages.viewTwo}></View>
+        <View style={pages.viewTwo}>
+          <HomeHeader />
+        </View>
       </View>
     </SafeAreaView>
   );
