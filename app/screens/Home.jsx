@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useContext } from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useContext, useState } from "react";
 import { COLORS, SIZES } from "../constants/theme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import pages from "./page.style";
@@ -7,6 +7,10 @@ import uidata from "../constants/uidata";
 import { UserReversedGeoCode } from "../context/UserReversedGeoCode";
 import { UserLocationContext } from "../context/UserLocationContext";
 import HomeHeader from "../components/HomeHeader";
+import CategoryList from "../components/CategoryList";
+import ChoicesList from "../components/ChoicesList";
+import Heading from "../components/Heading";
+import NearByRestaurants from "../components/NearByRestaurants";
 
 const Home = () => {
   //destructure context data
@@ -15,12 +19,39 @@ const Home = () => {
   //const {location, setLocation} = useContext(UserLocationContext);
   //console.log(location)
 
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);
+  //console.log(selectedCategory)
+  const [selectedChoice, setSelectedChoice] = useState(null);
+  //console.log(selectedChoice)
 
   return (
     <SafeAreaView>
       <View style={pages.viewOne}>
         <View style={pages.viewTwo}>
           <HomeHeader />
+
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{ borderBottomEndRadius: 30, borderBottomStartRadius: 30 }}
+          >
+            <CategoryList
+              setSelectedCategory={setSelectedCategory}
+              setSelectedSection={setSelectedSection}
+              setSelectedValue={setSelectedValue}
+            />
+
+            <ChoicesList
+              setSelectedChoice={setSelectedChoice}
+              setSelectedSection={setSelectedSection}
+            />
+
+            <View>
+              <Heading heading={'Nearby Restaurants'} onPress={() => {}} />
+              <NearByRestaurants  />
+            </View>
+          </ScrollView>
         </View>
       </View>
     </SafeAreaView>
