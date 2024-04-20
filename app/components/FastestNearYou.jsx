@@ -23,6 +23,3 @@ const FastestNearYou = () => {
 
 export default FastestNearYou;
 
-const styles = StyleSheet.create({});
-
-

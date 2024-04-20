@@ -59,7 +59,7 @@ const Home = () => {
               <NewFoodList />
               <Divider />
 
-              <Heading heading={'Fatest Near You New'} onPress={() => {}} />
+              <Heading heading={'Fatest Near You'} onPress={() => {}} />
               <FastestNearYou />
 
             </View>

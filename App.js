@@ -9,14 +9,14 @@ import * as Location from "expo-location";
 import BottomTab from "./app/navigation/BottomTab";
 import { UserLocationContext } from "./app/context/UserLocationContext";
 import { UserReversedGeoCode } from "./app/context/UserReversedGeoCode";
-
+import FoodNavigator from "./app/navigation/FoodNavigator";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [location, setLocation] = useState(null); //console.log(location)
   const [address, setAddress] = useState(null); //console.log(address)
-  const [errorMsg, setErrorMsg] = useState("")
+  const [errorMsg, setErrorMsg] = useState("");
 
   const defaultAddresss = {
     city: "Shanghai",
@@ -50,10 +50,10 @@ export default function App() {
   //get current location
   useEffect(() => {
     (async () => {
-      setAddress(defaultAddresss)
+      setAddress(defaultAddresss);
       //get permission from user
       let status = await Location.requestForegroundPermissionsAsync();
-      if(status === "granted") {
+      if (status === "granted") {
         setErrorMsg("Permission to access location was denied");
         return;
       } //console.log(status)
@@ -61,11 +61,8 @@ export default function App() {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
       //console.log(location)
-     }
-    )
-    ();
+    })();
   }, []);
-
 
   if (!fontsLoaded) {
     // Return a loading indicator or splash screen while fonts are loading or app is initializing
@@ -82,6 +79,11 @@ export default function App() {
               component={BottomTab}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="food-nav"
+              component={FoodNavigator}
+              options={{ headerShown: false}}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </UserReversedGeoCode.Provider>
@@ -89,7 +91,8 @@ export default function App() {
   );
 }
 
-{/* 
+{
+  /* 
   console.log(location)
   {
     "coords": 
@@ -99,6 +102,5 @@ export default function App() {
     "timestamp": 1713569081398
   }
 
-*/}
-
-
+*/
+}
