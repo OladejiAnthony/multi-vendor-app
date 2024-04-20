@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import AssetImage from "./AssetImage";
+import AssetImage from "./reusable/AssetImage";
 import { UserReversedGeoCode } from "../context/UserReversedGeoCode";
 import { COLORS, SIZES } from "../constants/theme";
 import { UserLocationContext } from "../context/UserLocationContext";

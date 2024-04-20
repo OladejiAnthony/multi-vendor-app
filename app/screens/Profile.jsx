@@ -6,9 +6,10 @@ import { LoginContext } from "../context/LoginContext";
 
 import { AntDesign } from "@expo/vector-icons";
 
-import NetworkImage from "../components/NetworkImage";
+
 import ProfileTile from "../components/ProfileTile";
 import RegistrationTile from "../components/RegistrationTile";
+import NetworkImage from "../components/reusable/NetworkImage";
 
 const Profile = () => {
   const [user, setUser] = useState(null);

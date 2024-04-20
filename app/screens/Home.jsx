@@ -11,6 +11,9 @@ import CategoryList from "../components/CategoryList";
 import ChoicesList from "../components/ChoicesList";
 import Heading from "../components/Heading";
 import NearByRestaurants from "../components/NearByRestaurants";
+import Divider from "../components/reusable/Divider";
+import NewFoodList from "../components/NewFoodList";
+import FastestNearYou from "../components/FastestNearYou";
 
 const Home = () => {
   //destructure context data
@@ -50,7 +53,18 @@ const Home = () => {
             <View>
               <Heading heading={'Nearby Restaurants'} onPress={() => {}} />
               <NearByRestaurants  />
+              <Divider />
+
+              <Heading heading={'Try Something New'} onPress={() => {}} />
+              <NewFoodList />
+              <Divider />
+
+              <Heading heading={'Fatest Near You New'} onPress={() => {}} />
+              <FastestNearYou />
+
             </View>
+
+            
           </ScrollView>
         </View>
       </View>
