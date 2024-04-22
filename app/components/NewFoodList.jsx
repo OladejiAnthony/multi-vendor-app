@@ -8,8 +8,7 @@ const NewFoodList = () => {
   //console.log(uidata.foods)
   const navigation = useNavigation();
   const renderItem = ({ item }) => <FoodComp item={item} onPress={() => navigation.navigate("food-nav", item)} />;
-  //when we navigate to "food-nav" we pass an item along from this component.
-  //in the FoodNavigator component, we also received the item as prop.
+  //from this component, whenever we navigate to "food-nav" route we pass the item prop along, first into the FoodNavigator screen as initialParameter, then to be used on the embedded FoodPage/Screen in the naviagtor.
 
   return (
     <View style={{marginLeft: 12, marginBottom: 10}}>

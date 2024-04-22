@@ -8,8 +8,9 @@ import OrderPage from '../screens/OrderPage';
 const Stack = createNativeStackNavigator();
 
 const FoodNavigator = () => {
-  const route = useRoute(); //here, we received the data from the component through useRoute()
+  const route = useRoute(); //here, we received the data from the component through useRoute() hook
   const item = route.params //we put the data into the item variable. Then we pass the item variable into the food-page as our initial Parameter on the food-page.
+  //Note - we received the item prop as initial parameter, to be used on the foodpage/screen.
 
   return (
     <Stack.Navigator
@@ -21,6 +22,7 @@ const FoodNavigator = () => {
             options={{headerShown: false}}
             initialParams={{item: item}}
         />
+        
         <Stack.Screen
             name='order-page'
             component={OrderPage}
