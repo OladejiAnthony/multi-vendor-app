@@ -13,6 +13,8 @@ import { CartCountContext } from "../context/CartCountContext";
 import { COLORS, SIZES } from "../constants/theme";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import BouncyCheckBox from "react-native-bouncy-checkbox";
+import Counter from "../components/Counter";
+import {AntDesign} from "@expo/vector-icons"
 
 const FoodPage = ({ route, navigation }) => {
   //we received the "route" from FoodNavigator component and the "navigation" from NewFoodList component
@@ -145,13 +147,47 @@ const FoodPage = ({ route, navigation }) => {
               onChangeText={(value) => setPreference(value)}
               autoCapitalize="none"
               autoCorrect={false}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
             />
           </View>
 
-          <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 20}}>
-            <Text style={[styles.title, {marginBottom: 10}]}>Quantity</Text>
-            
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginTop: 20,
+            }}
+          >
+            <Text style={[styles.title, { marginBottom: 10 }]}>Quantity</Text>
+            <Counter count={count} setCount={setCount} />
+          </View>
+        </View>
+        
+        <View style={{ flex: 1, justifyContent: "flex-end" }}>
+          <View style={styles.suspended}>
+            <View style={styles.cart}>
+              <View style={styles.cartRow}>
+                <TouchableOpacity onPress={()=> {}} style={styles.cartbtn}>
+                  <AntDesign  
+                    name="pluscircleo"
+                    size={24}
+                    color={COLORS.lightWhite}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=> navigation.navigate('order-page')} style={{backgroundColor: COLORS.primary, paddingHorizontal: 70, borderRadius: 30}}>
+                  <Text style={[styles.title, {color: COLORS.lightWhite, marginTop: 4, alignItems: "center" }]}>
+                    Order
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=> {}} style={{backgroundColor: COLORS.primary, paddingHorizontal: 10, borderRadius: 30}}>
+                  <Text style={[styles.title, {color: COLORS.lightWhite, marginTop: 4, alignItems: "center" }]}>
+                    {0}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -214,9 +250,39 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 8,
     paddingHorizontal: 12,
-    alignItems: "center"
+    alignItems: "center",
   },
+  suspended: {
+    //position: "relative",
+    //zIndex: 999,
+    //bottom: 0,
+    width: "100%",
+    alignItems: "center",
+  },
+  cart: {
+    width: SIZES.width-24,
+    height: 60,
+    justifyContent: "center",
+    backgroundColor: COLORS.primary1,
+    borderRadius: 30
+  },
+  cartRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 12,
+  },
+  cartbtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 99,
+    justifyContent: "center",
+    backgroundColor: COLORS.primary,
+    alignItems: "center"
+  }
 
 });
 
 //We successfully passed the item data from a component on the homepage into a stack navigator,then to be used on the screen/page in the navigator that we desire using route.params.
+
+
+//3hrs,40mins
