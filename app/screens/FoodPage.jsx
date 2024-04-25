@@ -45,6 +45,35 @@ const FoodPage = ({ route, navigation }) => {
   }
   //console.log(additives)
 
+  const handlePress = (item) => {
+    const cartItem = {
+      productId: item._id,
+      additives: additives,
+      quantity: count,
+      totalPrice: (item.price + totalPrice) * count
+    }
+    addToCart(cartItem)
+  }
+
+  let sendToOrderPage;
+  const id = item.restaurant;
+
+  sendToOrderPage = {
+    orderItem: {
+      foodId: item._id,
+      additives: additives,
+      quantity: count,
+      instructions: preference,
+      price: (item.price + totalPrice) * count
+    },
+    title: item.title,
+    description: item.description,
+    imageUrl: item.imageUrl[0],
+    restaurant: id
+  }
+
+  const addToCart = async(cartItem) => {}
+
   useEffect(() => {
     calculatePrice()
   }, [additives]);
@@ -58,9 +87,6 @@ const FoodPage = ({ route, navigation }) => {
     setTotalPrice(total)
   }
 
-  const handlePress = (item) => {
-    
-  }
  
 
   return (
@@ -216,7 +242,7 @@ const FoodPage = ({ route, navigation }) => {
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    onPress={() => navigation.navigate("order-page")}
+                    onPress={() => navigation.navigate("order-page", sendToOrderPage)}
                     style={{
                       backgroundColor: COLORS.primary,
                       paddingHorizontal: 60,
