@@ -25,7 +25,7 @@ const Search = () => {
       );
       setSearchResults(response.data);
     } catch (error) {
-      console.log("Failed to get products", error);
+      //console.log("Failed to get products", error);
     }
   };
 

@@ -92,14 +92,14 @@ const LoginPage = ({ navigation }) => {
       const endpoint = "http://localhost:6002/login";
       const data = values;
 
-      console.log(data);
+      //console.log(data);
 
       const response = await axios.post(endpoint, data);
       if (response.status === 200) {
         setLoader(false);
         setLogin(true);
 
-        console.log(response.data);
+        //console.log(response.data);
 
         await AsyncStorage.setItem("id", JSON.stringify(response.data._id));
         await AsyncStorage.setItem("token", JSON.stringify(response.data.userToken));

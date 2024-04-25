@@ -357,3 +357,5 @@ const styles = StyleSheet.create({
 //We successfully passed the item data from a component on the homepage into a stack navigator,then to be used on the screen/page in the navigator that we desire using route.params.
 
 //3hrs,40mins
+
+
