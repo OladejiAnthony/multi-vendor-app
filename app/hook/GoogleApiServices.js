@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 const calculateDistanceAndTime = async (startLat, startLng, destinationLat, destinationLng, mode = 'bicycling') => {
-    const apiKey = ""; // Replace with your API Key
+    const apiKey = "AIzaSyBUzX8s0kDfHsDoIMcKSFOPC5lcZ1ZPO08"; // Replace with your API Key
     const baseUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?";
     const ratePerKm = 1; 
 
@@ -12,7 +12,9 @@ const calculateDistanceAndTime = async (startLat, startLng, destinationLat, dest
         const response = await fetch(requestUrl);
         const data = await response.json();
 
-
+        //console.log(response)
+        //console.log(data)
+        
         // Ensure the request was successful and there are results
         if (data.status === "OK" && data.rows[0].elements[0].status === "OK") {
             const distance = data.rows[0].elements[0].distance.text;
@@ -108,3 +110,6 @@ export default {
     calculateDistanceAndTime,
     extractNumbers
 }
+
+
+//AIzaSyBUzX8s0kDfHsDoIMcKSFOPC5lcZ1ZPO08
