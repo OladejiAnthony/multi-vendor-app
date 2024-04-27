@@ -4,14 +4,15 @@ import { UserLocationContext } from "../context/UserLocationContext";
 import { COLORS, SIZES } from "../constants/theme";
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 import GoogleApiServices from "../hook/GoogleApiServices";
+import PlaceMarker from "./PlaceMarker";
 
 const GoogleMapView = ({ placeList }) => {
-  console.log(placeList[0])
+  //console.log(placeList[0]);
   const [directions, setDirections] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
   const { location, setLocation } = useContext(UserLocationContext);
   //console.log(location);
-  
+
   const [mapRegion, setMapRegion] = useState({
     latitude: 35.6855,
     longitude: 139.68884,
@@ -27,7 +28,12 @@ const GoogleMapView = ({ placeList }) => {
         latitudeDelta: 0.003,
         longitudeDelta: 0.01,
       });
-      fetchDirections(placeList[0].latitude, placeList[0].longitude,  location.coords.latitude, location.coords.longitude, )
+      fetchDirections(
+        placeList[0].latitude,
+        placeList[0].longitude,
+        location.coords.latitude,
+        location.coords.longitude
+      );
     }
   }, [location, coordinates]);
 
@@ -51,7 +57,7 @@ const GoogleMapView = ({ placeList }) => {
         setCoordinates(coordinates);
       });
     } catch (error) {
-      console.error(error);
+      //console.error(error);
     }
   };
 
@@ -90,9 +96,6 @@ const GoogleMapView = ({ placeList }) => {
     return points;
   };
 
-  
-
-
   return (
     <View style={styles.mapContainer}>
       <MapView
@@ -100,7 +103,17 @@ const GoogleMapView = ({ placeList }) => {
         showsUserLocation={true}
         region={mapRegion}
         style={styles.map}
-      />
+      >
+        <Marker title="My Location" coordinate={mapRegion} />
+        {placeList.map(
+          (item, index) => index <= 1 && <PlaceMarker key={item.id} coordinates={item} />
+        )}
+        <Polyline
+          coordinates={coordinates}
+          strokeColor={"red"}
+          strokeWidth={5}
+        />
+      </MapView>
     </View>
   );
 };
@@ -110,7 +123,7 @@ export default GoogleMapView;
 const styles = StyleSheet.create({
   mapContainer: {
     width: SIZES.width - 5,
-    height: SIZES.height/2.0,
+    height: SIZES.height / 2.0,
     //marginVertical: 8,
     //borderRadius: 12,
     borderColor: COLORS.primary,
