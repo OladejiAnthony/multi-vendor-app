@@ -13,7 +13,7 @@ import { RatingInput } from "react-native-stock-star-rating";
 const FoodTile = ({ item, onPress, showDetails }) => {
   //console.log(item)
   return (
-    <TouchableOpacity style={styles.wrapper}>
+    <TouchableOpacity style={styles.wrapper} onPress={showDetails}>
       <View style={{ backgroundColor: COLORS.lightWhite, borderRadius: 12 }}>
         <View style={{ flexDirection: "row" }}>
           <NetworkImage

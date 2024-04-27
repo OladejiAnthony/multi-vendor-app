@@ -24,7 +24,10 @@ const Menu = () => {
         renderItem={({ item }) => (
           <View>
             <ScrollView>
-              <FoodTile item={item} />
+              <FoodTile
+                item={item}
+                showDetails={() => navigation.navigate("food-nav", item)}
+              />
             </ScrollView>
           </View>
         )}
@@ -36,3 +39,4 @@ const Menu = () => {
 export default Menu;
 
 const styles = StyleSheet.create({});
+
