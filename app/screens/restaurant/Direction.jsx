@@ -14,7 +14,7 @@ const Direction = () => {
 
   return (
     <View>
-      <GoogleMapView placeList={coords}  />
+      <GoogleMapView placeList={[coords]}  />
     </View>
   )
 }
