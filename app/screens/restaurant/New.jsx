@@ -4,6 +4,7 @@ import uidata from "../../constants/uidata";
 import FoodTile from "../../components/FoodTile";
 import { useNavigation } from "@react-navigation/native";
 import { RestaurantContext } from "../../context/RestaurantContext";
+import CategoryFoodComp from "../../components/reusable/CategoryFoodComp";
 
 const New = () => {
   const { restaurantObj, setRestaurantObj } = useContext(RestaurantContext);
@@ -20,9 +21,9 @@ const New = () => {
         // numColumns={2}
         scrollEnabled
         renderItem={({ item }) => (
-          <FoodTile
+          <CategoryFoodComp
             item={item}
-            showDetails={() => navigation.navigate("food-nav", item)}
+            onPress={() => navigation.navigate("food-nav", item)}
           />
         )}
       />
@@ -32,6 +33,5 @@ const New = () => {
 
 export default New;
 
-const styles = StyleSheet.create({});
 
 

@@ -1,13 +1,13 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import uidata from '../constants/uidata'
-import CategoryFoodComp from './CategoryFoodComp';
+import CategoryFoodComp from './reusable/CategoryFoodComp';
 import { useNavigation } from '@react-navigation/native';
 
 
 
 const HomeCategories = () => {
-  console.log(uidata.foods);
+  //console.log(uidata.foods);
   const navigation  = useNavigation();
 
   const renderCategoryItem = ({item}) => (

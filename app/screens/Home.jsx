@@ -55,7 +55,7 @@ const Home = () => {
               <View>
                 <Heading heading={`Browse ${selectedValue}`} onPress={() => {}} />
                 <HomeCategories  
-                  
+
                 />
               </View>
             ) : (

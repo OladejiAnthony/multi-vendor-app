@@ -6,8 +6,8 @@ import {
   FlatList,
 } from "react-native";
 import React from "react";
-import { COLORS, SIZES } from "../constants/theme";
-import NetworkImage  from "../components/reusable/NetworkImage";
+import { COLORS, SIZES } from "../../constants/theme";
+import NetworkImage  from "./NetworkImage";
 import { RatingInput, Rating } from "react-native-stock-star-rating";
 
 
