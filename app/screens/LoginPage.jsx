@@ -8,16 +8,22 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useRef, useContext } from "react";
-import { Button, BackBtn } from "../components";
+
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { COLORS, SIZES } from "../constants/theme";
-import styles from "./login.style";
+
 import LottieView from "lottie-react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { COLORS, SIZES } from "../constants/theme";
+import styles from "./login.style";
+import { Button, BackBtn } from "../components";
+
 import { LoginContext } from "../context/LoginContext";
+
+
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -85,6 +91,7 @@ const LoginPage = ({ navigation }) => {
   //   }
   // };
 
+  
   const loginFunc = async (values) => {
     setLoader(true);
 
@@ -140,6 +147,9 @@ const LoginPage = ({ navigation }) => {
       setLoader(false);
     }
   };
+
+
+
   return (
     <ScrollView style={{ backgroundColor: COLORS.white }}>
       <View style={{ marginHorizontal: 20, marginTop: 50 }}>
@@ -198,6 +208,7 @@ const LoginPage = ({ navigation }) => {
                     style={{ flex: 1 }}
                   />
                 </View>
+
                 {touched.email && errors.email && (
                   <Text style={styles.errorMessage}>{errors.email}</Text>
                 )}
@@ -274,3 +285,5 @@ const LoginPage = ({ navigation }) => {
 };
 
 export default LoginPage;
+
+

@@ -22,14 +22,10 @@ const Menu = () => {
         // numColumns={2}
         scrollEnabled
         renderItem={({ item }) => (
-          <View>
-            <ScrollView>
-              <FoodTile
-                item={item}
-                showDetails={() => navigation.navigate("food-nav", item)}
-              />
-            </ScrollView>
-          </View>
+          <FoodTile
+            item={item}
+            showDetails={() => navigation.navigate("food-nav", item)}
+          />
         )}
       />
     </View>
@@ -39,4 +35,3 @@ const Menu = () => {
 export default Menu;
 
 const styles = StyleSheet.create({});
-

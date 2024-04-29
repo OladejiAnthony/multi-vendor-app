@@ -7,15 +7,16 @@ import {
 } from "react-native";
 import React from "react";
 import { COLORS, SIZES } from "../constants/theme";
-import { NetworkImage } from "../components";
+import NetworkImage  from "../components/reusable/NetworkImage";
 import { RatingInput, Rating } from "react-native-stock-star-rating";
+
 
 const CategoryFoodComp = ({ item, onPress }) => {
   return (
     <TouchableOpacity style={styles.wrapper} onPress={onPress}>
       <View style={styles.innerRow}>
         <NetworkImage
-          source={item.imageUrl[0]}
+          data={item.imageUrl[0]}
           width={100}
           height={100}
           radius={16}

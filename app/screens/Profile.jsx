@@ -7,11 +7,14 @@ import { LoginContext } from "../context/LoginContext";
 import { AntDesign } from "@expo/vector-icons";
 
 
+
 import ProfileTile from "../components/ProfileTile";
 import RegistrationTile from "../components/RegistrationTile";
 import NetworkImage from "../components/reusable/NetworkImage";
 
+
 const Profile = () => {
+  const {login, setLogin} = useContext(LoginContext);
   const [user, setUser] = useState(null);
 
   // const { user, isProfileLoading, error, refetch } = fetchProfile();
@@ -22,6 +25,7 @@ const Profile = () => {
   //if (isProfileLoading) {
   //   return <LoadingScreen />;
   // }
+  
 
   return (
     <View>
@@ -51,7 +55,7 @@ const Profile = () => {
               }}
             >
               <NetworkImage
-                source={user === null ? profile : user.profile}
+                data={user === null ? profile : user.profile}
                 width={45}
                 height={45}
                 radius={99}
@@ -149,3 +153,6 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
 });
+
+
+//5hrs,33mins

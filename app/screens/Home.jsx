@@ -14,6 +14,7 @@ import NearByRestaurants from "../components/NearByRestaurants";
 import Divider from "../components/reusable/Divider";
 import NewFoodList from "../components/NewFoodList";
 import FastestNearYou from "../components/FastestNearYou";
+import HomeCategories from "../components/HomeCategories";
 
 const Home = () => {
   //destructure context data
@@ -50,21 +51,27 @@ const Home = () => {
               setSelectedSection={setSelectedSection}
             />
 
-            <View>
-              <Heading heading={'Nearby Restaurants'} onPress={() => {}} />
-              <NearByRestaurants  />
-              <Divider />
+            {selectedCategory !== null && selectedSection !== null ? (
+              <View>
+                <Heading heading={`Browse ${selectedValue}`} onPress={() => {}} />
+                <HomeCategories  
+                  
+                />
+              </View>
+            ) : (
+              <View>
+                <Heading heading={"Nearby Restaurants"} onPress={() => {}} />
+                <NearByRestaurants />
+                <Divider />
 
-              <Heading heading={'Try Something New'} onPress={() => {}} />
-              <NewFoodList />
-              <Divider />
+                <Heading heading={"Try Something New"} onPress={() => {}} />
+                <NewFoodList />
+                <Divider />
 
-              <Heading heading={'Fatest Near You'} onPress={() => {}} />
-              <FastestNearYou />
-
-            </View>
-
-            
+                <Heading heading={"Fatest Near You"} onPress={() => {}} />
+                <FastestNearYou />
+              </View>
+            )}
           </ScrollView>
         </View>
       </View>

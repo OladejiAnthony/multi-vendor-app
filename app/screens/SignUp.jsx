@@ -17,6 +17,7 @@ import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants/theme";
 import { BackBtn, Button } from "../components";
 import { UserLocationContext } from "../context/UserLocationContext";
+
 const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Password must be at least 8 character")
@@ -28,6 +29,7 @@ const validationSchema = Yup.object().shape({
     .min(3, "Provide a valid username")
     .required("Required"),
 });
+
 
 const SignUp = ({ navigation }) => {
   const animation = useRef(null);

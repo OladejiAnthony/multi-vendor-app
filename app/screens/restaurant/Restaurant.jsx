@@ -20,7 +20,7 @@ const Restaurant = ({ navigation }) => {
   const route = useRoute();
   const item = route.params;
   //console.log(item); //restaurant parameters
-  const {location, setLocation} = useContext(UserLocationContext)
+  const { location, setLocation } = useContext(UserLocationContext);
 
   //console.log(location) //users parameters
   //console.log(location.coords.latitude, location.coords.longitude); //users coordinates
@@ -28,115 +28,101 @@ const Restaurant = ({ navigation }) => {
 
   useEffect(() => {
     GoogleApiServices.calculateDistanceAndTime(
-      item.coords.latitude, 
+      item.coords.latitude,
       item.coords.longitude,
-      location.coords.latitude, 
+      location.coords.latitude,
       location.coords.longitude
     ).then((result) => {
-      if(result) {
-        setDistanceTime(result)
+      if (result) {
+        setDistanceTime(result);
       }
-
     });
-    console.log(distanceTime)
-
+    console.log(distanceTime);
   }, []);
 
-
-
-  const totalTime =  GoogleApiServices.extractNumbers(distanceTime.duration)[0] + GoogleApiServices.extractNumbers(item.time);
+  const totalTime =
+    GoogleApiServices.extractNumbers(distanceTime.duration)[0] +
+    GoogleApiServices.extractNumbers(item.time);
   //console.log(totalTime)
-  
 
   return (
     <View>
-      <ScrollView>
-        <View>
-          <TouchableOpacity
-            onPress={() => navigation.goback()}
-            style={styles.backbtn}
-          >
-            <Ionicons
-              name="chevron-back-circle"
-              size={30}
-              color={COLORS.primary}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => {}} style={styles.sharebtn}>
-            <MaterialCommunityIcons
-              name="share-circle"
-              size={30}
-              color={COLORS.primary}
-            />
-          </TouchableOpacity>
-
-          <NetworkImage
-            data={item.imageUrl}
-            height={SIZES.height / 3.4}
-            width={SIZES.width}
-            radius={20}
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.goback()}
+          style={styles.backbtn}
+        >
+          <Ionicons
+            name="chevron-back-circle"
+            size={30}
+            color={COLORS.primary}
           />
-          <View style={styles.rating}>
-            <View style={styles.innerRating}>
-              <RatingInput
-                rating={Number(item.rating)}
-                size={22}
-                //color={COLORS.lightWhite}
-              />
-              <TouchableOpacity style={styles.ratingBtn}>
-                <Text
-                  style={styles.btnText}
-                  onPress={() => navigation.navigate("rating")}
-                >
-                  {" "}
-                  Rate This Store
-                </Text>
-              </TouchableOpacity>
-            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => {}} style={styles.sharebtn}>
+          <MaterialCommunityIcons
+            name="share-circle"
+            size={30}
+            color={COLORS.primary}
+          />
+        </TouchableOpacity>
+
+        <NetworkImage
+          data={item.imageUrl}
+          height={SIZES.height / 3.4}
+          width={SIZES.width}
+          radius={20}
+        />
+
+        <View style={styles.rating}>
+          <View style={styles.innerRating}>
+            <RatingInput
+              rating={Number(item.rating)}
+              size={22}
+              //color={COLORS.lightWhite}
+            />
+            <TouchableOpacity style={styles.ratingBtn}>
+              <Text
+                style={styles.btnText}
+                onPress={() => navigation.navigate("rating")}
+              >
+                {" "}
+                Rate This Store
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
+      </View>
 
-        <View style={{ marginTop: 8, marginHorizontal: 8, marginBottom: 10 }}>
-          <Text style={styles.title}>{item.title}</Text>
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <Text style={[styles.small, { color: COLORS.gray }]}>
-              Distance
-            </Text>
-            <Text style={[styles.small, { fontFamily: "regular" }]}>
-              {distanceTime.distance}
-            </Text>
-          </View>
-
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <Text style={[styles.small, { color: COLORS.gray }]}>
-              Prep and Delivery Time
-            </Text>
-            <Text style={[styles.small, { fontFamily: "regular" }]}>
-              {totalTime} min
-            </Text>
-          </View>
-
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <Text style={[styles.small, { color: COLORS.gray }]}>
-              Cost
-            </Text>
-            <Text style={[styles.small, { fontFamily: "regular" }]}>
-              {distanceTime.finalPrice}
-            </Text>
-          </View>
+      <View style={{ marginTop: 8, marginHorizontal: 8, marginBottom: 10 }}>
+        <Text style={styles.title}>{item.title}</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={[styles.small, { color: COLORS.gray }]}>Distance</Text>
+          <Text style={[styles.small, { fontFamily: "regular" }]}>
+            {distanceTime.distance}
+          </Text>
         </View>
 
-        <View style={{ height: SIZES.height/1.5}}>
-          <RestaurantPage />
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={[styles.small, { color: COLORS.gray }]}>
+            Prep and Delivery Time
+          </Text>
+          <Text style={[styles.small, { fontFamily: "regular" }]}>
+            {totalTime} min
+          </Text>
         </View>
-      </ScrollView>
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={[styles.small, { color: COLORS.gray }]}>Cost</Text>
+          <Text style={[styles.small, { fontFamily: "regular" }]}>
+            {distanceTime.finalPrice}
+          </Text>
+        </View>
+      </View>
+
+      <View style={{ height: SIZES.height / 1.5 }}>
+        <RestaurantPage />
+      </View>
     </View>
   );
 };
@@ -196,4 +182,3 @@ const styles = StyleSheet.create({
     color: COLORS.black,
   },
 });
-

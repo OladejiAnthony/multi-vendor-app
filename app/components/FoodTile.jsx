@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginRight: 5,
     paddingRight: 7,
+    ...SHADOWS.small
   },
   title: {
     fontSize: 16,
