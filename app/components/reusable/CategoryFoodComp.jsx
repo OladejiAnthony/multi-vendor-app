@@ -31,8 +31,6 @@ const CategoryFoodComp = ({ item, onPress }) => {
           <View>
             <Text style={styles.restaurant}>{item.title}</Text>
 
-           
-
             <FlatList
               data={item.foodTags.slice(0, 3)}
               showsVerticalScrollIndicator={false}

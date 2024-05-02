@@ -123,7 +123,7 @@ export default GoogleMapView;
 const styles = StyleSheet.create({
   mapContainer: {
     width: SIZES.width - 5,
-    height: SIZES.height / 2.6,
+    height: SIZES.height / 3,
     //marginVertical: 8,
     //borderRadius: 12,
     borderColor: COLORS.primary,
@@ -136,3 +136,5 @@ const styles = StyleSheet.create({
 });
 
 //4hrs 48mins
+
+
