@@ -19,3 +19,5 @@ const pages = StyleSheet.create({
 });
 
 export default pages;
+
+
