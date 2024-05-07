@@ -32,6 +32,30 @@ export default function App() {
   const [cartCount, setCartCount] = useState(0);
 
   
+ 
+
+  const [fontsLoaded] = useFonts({
+    regular: require("./assets/fonts/Poppins-Regular.ttf"),
+    light: require("./assets/fonts/Poppins-Light.ttf"),
+    bold: require("./assets/fonts/Poppins-Bold.ttf"),
+    medium: require("./assets/fonts/Poppins-Medium.ttf"),
+    extrabold: require("./assets/fonts/Poppins-ExtraBold.ttf"),
+    semibold: require("./assets/fonts/Poppins-SemiBold.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    //Inside this function, you check if the fonts are loaded, and if they are, you hide the SplashScreen.
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    // Return a loading indicator or splash screen while fonts are loading or app is initializing
+    return;
+    //A condition that checks if the fonts are not loaded. If they are not loaded yet, you return nothing, presumably to show a loading indicator or splash screen until the fonts are loaded.
+  }
+  
   const defaultAddresss = {
     city: "Shanghai",
     country: "China",
@@ -45,21 +69,6 @@ export default function App() {
     subregion: "San Francisco County",
     timezone: "America/Los_Angeles",
   };
-
-  const [fontsLoaded] = useFonts({
-    regular: require("./assets/fonts/Poppins-Regular.ttf"),
-    light: require("./assets/fonts/Poppins-Light.ttf"),
-    bold: require("./assets/fonts/Poppins-Bold.ttf"),
-    medium: require("./assets/fonts/Poppins-Medium.ttf"),
-    extrabold: require("./assets/fonts/Poppins-ExtraBold.ttf"),
-    semibold: require("./assets/fonts/Poppins-SemiBold.ttf"),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   //get current location
   useEffect(() => {
@@ -79,10 +88,7 @@ export default function App() {
     })();
   }, []);
 
-  if (!fontsLoaded) {
-    // Return a loading indicator or splash screen while fonts are loading or app is initializing
-    return;
-  }
+  
 
   const loginStatus = async () => {
     const userToken = await AsyncStorage.getItem("token");
