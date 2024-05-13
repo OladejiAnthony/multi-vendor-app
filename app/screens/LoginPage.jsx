@@ -38,7 +38,7 @@ const LoginPage = ({ navigation }) => {
   const animation = useRef(null);
   const [loader, setLoader] = useState(false);
   const [obsecureText, setObsecureText] = useState(false);
-  const {login, setLogin} = useContext(LoginContext)
+  const { login, setLogin } = useContext(LoginContext);
 
   const inValidForm = () => {
     Alert.alert("Invalid Form", "Please provide all required fields", [
@@ -91,7 +91,6 @@ const LoginPage = ({ navigation }) => {
   //   }
   // };
 
-  
   const loginFunc = async (values) => {
     setLoader(true);
 
@@ -99,18 +98,20 @@ const LoginPage = ({ navigation }) => {
       const endpoint = "http://localhost:6002/login";
       const data = values;
 
-      //console.log(data);
+      console.log(data);
 
       const response = await axios.post(endpoint, data);
       if (response.status === 200) {
         setLoader(false);
         setLogin(true);
 
-        //console.log(response.data);
+        console.log(response.data);
 
         await AsyncStorage.setItem("id", JSON.stringify(response.data._id));
-        await AsyncStorage.setItem("token", JSON.stringify(response.data.userToken));
-
+        await AsyncStorage.setItem(
+          "token",
+          JSON.stringify(response.data.userToken)
+        );
       } else {
         setLogin(false);
 
@@ -128,6 +129,8 @@ const LoginPage = ({ navigation }) => {
       }
     } catch (error) {
       setLogin(false);
+      console.error('Error during login:', error.message);
+  // Rest of the error handling code
       Alert.alert(
         "Error ",
         "Oops, Error logging in try again with correct credentials",
@@ -147,8 +150,6 @@ const LoginPage = ({ navigation }) => {
       setLoader(false);
     }
   };
-
-
 
   return (
     <ScrollView style={{ backgroundColor: COLORS.white }}>
@@ -285,5 +286,3 @@ const LoginPage = ({ navigation }) => {
 };
 
 export default LoginPage;
-
-

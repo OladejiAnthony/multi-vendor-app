@@ -32,7 +32,20 @@ export default function App() {
   const [cartCount, setCartCount] = useState(0);
 
   
- 
+  const defaultAddresss = {
+    city: "Shanghai",
+    country: "China",
+    district: "Pudong",
+    isoCountryCode: "CN",
+    name: "33 East Nanjing Rd",
+    postalCode: "94108",
+    region: "SH",
+    street: "Stockton St",
+    streetNumber: "1",
+    subregion: "San Francisco County",
+    timezone: "America/Los_Angeles",
+  };
+
 
   const [fontsLoaded] = useFonts({
     regular: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -50,26 +63,9 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    // Return a loading indicator or splash screen while fonts are loading or app is initializing
-    return;
-    //A condition that checks if the fonts are not loaded. If they are not loaded yet, you return nothing, presumably to show a loading indicator or splash screen until the fonts are loaded.
-  }
-  
-  const defaultAddresss = {
-    city: "Shanghai",
-    country: "China",
-    district: "Pudong",
-    isoCountryCode: "CN",
-    name: "33 East Nanjing Rd",
-    postalCode: "94108",
-    region: "SH",
-    street: "Stockton St",
-    streetNumber: "1",
-    subregion: "San Francisco County",
-    timezone: "America/Los_Angeles",
-  };
 
+
+ 
   //get current location
   useEffect(() => {
     (async () => {
@@ -80,6 +76,7 @@ export default function App() {
         setErrorMsg("Permission to access location was denied");
         return;
       } //console.log(status)
+      
       //get userLocation
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
@@ -88,7 +85,11 @@ export default function App() {
     })();
   }, []);
 
-  
+  if (!fontsLoaded) {
+    // Return a loading indicator or splash screen while fonts are loading or app is initializing
+    return;
+    //A condition that checks if the fonts are not loaded. If they are not loaded yet, you return nothing, presumably to show a loading indicator or splash screen until the fonts are loaded.
+  }
 
   const loginStatus = async () => {
     const userToken = await AsyncStorage.getItem("token");
